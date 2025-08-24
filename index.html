@@ -22,28 +22,31 @@
         .charvaka-text-accent { color: #16a34a; }
         .charvaka-border-accent { border-color: #16a34a; }
         
-        /* Styles for the popup form, adapted from your template */
         .popup-form {
-          display: none; /* Hidden by default */
-          position: fixed; /* Stay in place */
-          z-index: 50; /* Sit on top */
+          display: none; 
+          position: fixed; 
+          z-index: 50; 
           left: 0;
           top: 0;
-          width: 100%; /* Full width */
-          height: 100%; /* Full height */
-          overflow: auto; /* Enable scroll if needed */
-          background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+          width: 100%; 
+          height: 100%; 
+          overflow: auto; 
+          background-color: rgba(0,0,0,0.6); 
           padding-top: 60px;
         }
 
         .popup-container {
           background-color: #fefefe;
-          margin: 5% auto; /* 5% from the top and centered */
+          margin: 5% auto; 
           border: 1px solid #888;
           width: 90%;
           max-width: 400px;
           border-radius: 0.5rem;
           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .nav-active {
+            background-color: #16a34a;
+            color: white;
         }
     </style>
 </head>
@@ -57,24 +60,24 @@
                  <img src="https://i.postimg.cc/KYXjNNzv/logo.jpg" alt="Charvaka Logo" class="h-12" onerror="this.onerror=null;this.src='https://placehold.co/150x50/FFFFFF/000000?text=CHARVAKA';">
             </div>
             <!-- Nav Links -->
-            <nav class="flex-grow px-4 py-6">
-                <a href="#" class="flex items-center px-4 py-3 text-white charvaka-bg-accent rounded-lg sidebar-link">
+            <nav id="sidebar-nav" class="flex-grow px-4 py-6">
+                <a href="#" data-target="dashboard-content" class="nav-link flex items-center px-4 py-3 rounded-lg nav-active">
                     <i data-feather="home" class="w-5 h-5"></i>
                     <span class="ml-4 font-semibold">Dashboard</span>
                 </a>
-                <a href="#" class="flex items-center px-4 py-3 mt-2 text-gray-600 hover:bg-gray-200 rounded-lg sidebar-link">
+                <a href="#" data-target="projects-content" class="nav-link flex items-center px-4 py-3 mt-2 text-gray-600 hover:bg-gray-200 rounded-lg">
                     <i data-feather="briefcase" class="w-5 h-5"></i>
                     <span class="ml-4 font-semibold">Projects</span>
                 </a>
-                <a href="#" class="flex items-center px-4 py-3 mt-2 text-gray-600 hover:bg-gray-200 rounded-lg sidebar-link">
+                <a href="#" data-target="training-content" class="nav-link flex items-center px-4 py-3 mt-2 text-gray-600 hover:bg-gray-200 rounded-lg">
                     <i data-feather="book-open" class="w-5 h-5"></i>
                     <span class="ml-4 font-semibold">Training</span>
                 </a>
-                <a href="#" class="flex items-center px-4 py-3 mt-2 text-gray-600 hover:bg-gray-200 rounded-lg sidebar-link">
+                <a href="#" data-target="recognition-content" class="nav-link flex items-center px-4 py-3 mt-2 text-gray-600 hover:bg-gray-200 rounded-lg">
                     <i data-feather="award" class="w-5 h-5"></i>
                     <span class="ml-4 font-semibold">Recognition</span>
                 </a>
-                 <a href="#" class="flex items-center px-4 py-3 mt-2 text-gray-600 hover:bg-gray-200 rounded-lg sidebar-link">
+                 <a href="#" data-target="resources-content" class="nav-link flex items-center px-4 py-3 mt-2 text-gray-600 hover:bg-gray-200 rounded-lg">
                     <i data-feather="file-text" class="w-5 h-5"></i>
                     <span class="ml-4 font-semibold">Resources</span>
                 </a>
@@ -85,7 +88,7 @@
                     <img src="https://placehold.co/40x40/16a34a/FFFFFF?text=VK" class="w-10 h-10 rounded-full" alt="Avatar">
                     <div class="ml-3">
                         <p class="text-sm font-semibold text-gray-800">Venu Sai Kishore</p>
-                        <p id="user-role" class="text-xs text-gray-500">Architect & Lead</p>
+                        <p id="user-role" class="text-xs text-gray-500">Architect & Planner</p>
                     </div>
                     <i data-feather="edit-2" class="ml-auto w-4 h-4 text-gray-500"></i>
                 </button>
@@ -95,8 +98,11 @@
         <!-- Main Content -->
         <div class="flex-1 flex flex-col overflow-hidden">
             <header class="flex justify-between items-center p-6 bg-white border-b">
-                 <h1 class="text-2xl font-bold charvaka-text">SDG 11 Dashboard</h1>
-                 <div class="flex items-center space-x-4">
+                 <h1 id="header-title" class="text-2xl font-bold charvaka-text">SDG 11 Dashboard</h1>
+                 <div class="flex items-center space-x-6">
+                     <a href="#" data-target="dashboard-content" class="nav-link flex items-center text-gray-600 hover:charvaka-text-accent">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Sustainable_Development_Goal_11SustainableCities.svg/500px-Sustainable_Development_Goal_11SustainableCities.svg.png" class="h-10" alt="SDG 11 Icon"/>
+                     </a>
                      <button class="text-gray-500 hover:text-gray-700"><i data-feather="search" class="w-6 h-6"></i></button>
                      <button class="text-gray-500 hover:text-gray-700 relative">
                          <i data-feather="bell" class="w-6 h-6"></i>
@@ -106,67 +112,8 @@
             </header>
             
             <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-                    <!-- Left & Center Column -->
-                    <div class="lg:col-span-2 space-y-6">
-                        
-                        <!-- SDG 11 Hub -->
-                        <div class="bg-white p-6 rounded-xl shadow-lg">
-                            <h2 id="sdg-hub-title" class="text-xl font-bold mb-4 charvaka-text">SDG 11 Hub (Architect & Planner View)</h2>
-                            <!-- Role-based Content -->
-                            <div id="sdg-role-content">
-                                <!-- Architect & Planner View (Default) -->
-                                <div id="role-view-architect" class="space-y-4">
-                                    <h3 class="font-semibold">Design & Innovation Resources</h3>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <a href="#" class="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100"><div class="flex items-center"><i data-feather="database" class="w-5 h-5 mr-2 charvaka-text-accent"></i><span class="font-semibold">Sustainable Materials DB</span></div><p class="text-sm text-gray-600 mt-1">Access certified green materials.</p></a>
-                                        <a href="#" class="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100"><div class="flex items-center"><i data-feather="book" class="w-5 h-5 mr-2 charvaka-text-accent"></i><span class="font-semibold">Green Building Case Studies</span></div><p class="text-sm text-gray-600 mt-1">Learn from successful projects.</p></a>
-                                        <a href="#" class="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100"><div class="flex items-center"><i data-feather="check-square" class="w-5 h-5 mr-2 charvaka-text-accent"></i><span class="font-semibold">Zoning & Policy Guide</span></div><p class="text-sm text-gray-600 mt-1">Navigate local sustainability codes.</p></a>
-                                        <a href="#" class="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100"><div class="flex items-center"><i data-feather="cpu" class="w-5 h-5 mr-2 charvaka-text-accent"></i><span class="font-semibold">Eco-Design Software Plugins</span></div><p class="text-sm text-gray-600 mt-1">Integrate sustainability into your workflow.</p></a>
-                                    </div>
-                                </div>
-                                <!-- Project Manager View -->
-                                <div id="role-view-pm" class="hidden space-y-4">
-                                    <h3 class="font-semibold">Impact & Execution Tools</h3>
-                                    <div class="p-4 bg-green-50 rounded-lg border-l-4 charvaka-border-accent">
-                                        <p class="font-bold">Live Impact Tracker: Eco-Transport Hub</p>
-                                        <ul class="list-disc list-inside text-sm text-gray-600 mt-2">
-                                            <li><span class="font-semibold">Target 11.2:</span> Increased public transport access by 15%.</li>
-                                            <li><span class="font-semibold">Target 11.6:</span> Reduced local air pollutants by 8%.</li>
-                                        </ul>
-                                    </div>
-                                     <a href="#" class="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100"><div class="flex items-center"><i data-feather="list" class="w-5 h-5 mr-2 charvaka-text-accent"></i><span class="font-semibold">Sustainable Sourcing Checklist</span></div><p class="text-sm text-gray-600 mt-1">Ensure your vendors meet our eco-standards.</p></a>
-                                </div>
-                                <!-- Employee View -->
-                                <div id="role-view-employee" class="hidden space-y-4">
-                                    <h3 class="font-semibold">Engagement & Culture Initiatives</h3>
-                                    <div class="p-4 bg-gray-50 rounded-lg">
-                                        <p class="font-bold">Challenge: Paperless Week</p>
-                                        <p class="text-sm text-gray-600">Help us reduce paper waste by 50% this week!</p>
-                                        <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2"><div class="charvaka-bg-accent h-2.5 rounded-full" style="width: 75%"></div></div>
-                                        <p class="text-xs text-right mt-1">75% of goal reached</p>
-                                    </div>
-                                    <a href="#" class="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100"><div class="flex items-center"><i data-feather="gift" class="w-5 h-5 mr-2 charvaka-text-accent"></i><span class="font-semibold">Eco-Idea Box</span></div><p class="text-sm text-gray-600 mt-1">Submit your sustainability ideas and win rewards.</p></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Active Projects -->
-                        <div class="bg-white p-6 rounded-xl shadow-lg">
-                            <h2 class="text-xl font-bold mb-4 charvaka-text">Active Projects Overview</h2>
-                            <div class="space-y-4">
-                                <div class="flex items-center p-3 rounded-lg hover:bg-gray-50"><div class="w-2 h-10 rounded-full charvaka-bg-accent"></div><div class="ml-4 flex-1"><p class="font-bold">Neom-Inspired Eco Pods</p><p class="text-sm text-gray-500">Aligns with SDG Target 11.1</p></div><div class="text-sm text-center"><span class="font-semibold px-2 py-1 bg-green-100 text-green-700 rounded-full">On Track</span></div><div class="w-40 ml-6"><div class="w-full bg-gray-200 rounded-full h-2"><div class="charvaka-bg-accent h-2 rounded-full" style="width: 30%"></div></div></div><button class="ml-6 text-gray-500 hover:text-gray-800"><i data-feather="more-vertical"></i></button></div>
-                                <div class="flex items-center p-3 rounded-lg hover:bg-gray-50"><div class="w-2 h-10 rounded-full bg-yellow-500"></div><div class="ml-4 flex-1"><p class="font-bold">City Center Park Redevelopment</p><p class="text-sm text-gray-500">Aligns with SDG Target 11.7</p></div><div class="text-sm text-center"><span class="font-semibold px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full">At Risk</span></div><div class="w-40 ml-6"><div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-yellow-500 h-2 rounded-full" style="width: 45%"></div></div></div><button class="ml-6 text-gray-500 hover:text-gray-800"><i data-feather="more-vertical"></i></button></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Column -->
-                    <div class="lg:col-span-1 space-y-6">
-                        <div class="bg-white p-6 rounded-xl shadow-lg"><h2 class="text-xl font-bold mb-4 charvaka-text">What's Happening</h2><div class="space-y-4"><div class="p-4 bg-green-50 border-l-4 charvaka-border-accent rounded-r-lg"><h4 class="font-bold text-green-800">New Training Available</h4><p class="text-sm text-green-700">Enroll in "Circular Economy in Architecture" by Sept 1st.</p></div><div class="flex items-start"><div class="w-10 h-10 flex-shrink-0 bg-gray-200 rounded-lg flex items-center justify-center font-bold text-sm">28<br>AUG</div><div class="ml-3"><p class="font-semibold">Project Milestone Deadline</p><p class="text-sm text-gray-500">Eco Pods blueprint submission.</p></div></div><div class="flex items-center"><img src="https://placehold.co/32x32/9CA3AF/FFFFFF?text=JD" class="w-8 h-8 rounded-full" alt="Jane Doe"><p class="ml-3 text-sm text-gray-600"><span class="font-semibold">Jane Doe's team</span> just won the Q2 Sustainability Challenge!</p></div></div></div>
-                        <div class="bg-white p-6 rounded-xl shadow-lg text-center"><h2 class="text-xl font-bold mb-4 charvaka-text">Green Champion</h2><img src="https://placehold.co/80x80/16a34a/FFFFFF?text=VK" class="w-20 h-20 rounded-full mx-auto border-4 border-green-200" alt="Venu"><p class="font-bold text-lg mt-3">Venu Sai Kishore</p><p class="text-sm text-gray-500">August 2025</p><p class="text-xs mt-2 italic">"For outstanding innovation in sustainable material sourcing."</p></div>
-                    </div>
+                <div id="main-content-area">
+                    <!-- Content will be dynamically injected here -->
                 </div>
             </main>
         </div>
@@ -177,9 +124,9 @@
         <div class="popup-container p-6">
             <h1 class="text-xl font-bold mb-4">Switch Role View</h1>
             <div class="space-y-3">
-                <button data-role="Architect & Planner" data-view="role-view-architect" class="role-option w-full text-left p-3 rounded-md bg-gray-100 hover:bg-gray-200">Architect & Planner</button>
-                <button data-role="Project Manager" data-view="role-view-pm" class="role-option w-full text-left p-3 rounded-md bg-gray-100 hover:bg-gray-200">Project Manager</button>
-                <button data-role="Employee" data-view="role-view-employee" class="role-option w-full text-left p-3 rounded-md bg-gray-100 hover:bg-gray-200">Employee / Admin</button>
+                <button data-role="Architect & Planner" class="role-option w-full text-left p-3 rounded-md bg-gray-100 hover:bg-gray-200">Architect & Planner</button>
+                <button data-role="Project Manager" class="role-option w-full text-left p-3 rounded-md bg-gray-100 hover:bg-gray-200">Project Manager</button>
+                <button data-role="Employee" class="role-option w-full text-left p-3 rounded-md bg-gray-100 hover:bg-gray-200">Employee / Admin</button>
             </div>
             <hr class="my-4">
             <button type="button" id="close-popup-btn" class="w-full bg-red-500 text-white p-3 rounded-md hover:bg-red-600">Cancel</button>
@@ -187,9 +134,190 @@
     </div>
 
     <script>
+        // --- DATA STORE ---
+        const appData = {
+            'Architect & Planner': {
+                projects: [
+                    { name: 'The Verdant Community Housing', description: 'Focus on green space integration and sustainable material selection.', status: 'On Track', progress: 30 },
+                    { name: 'City Center Park Redevelopment', description: 'Lead designer for public space accessibility and biodiversity.', status: 'At Risk', progress: 45 },
+                ],
+                training: [
+                    { name: 'LEED Green Associate Prep', completed: true },
+                    { name: 'Eco-Design Software Mastery', completed: true },
+                    { name: 'Circular Economy in Architecture', completed: false },
+                ],
+                recognition: [
+                    { name: 'Charvaka Innovator Award 2024', source: 'Company' },
+                    { name: 'Green Building Council Honorable Mention', source: 'Govt/Industry' },
+                ],
+                resources: [
+                    { name: 'Sustainable Materials Database', url: '#' },
+                    { name: 'National Green Building Code', url: '#' },
+                ]
+            },
+            'Project Manager': {
+                projects: [
+                    { name: 'The Verdant Community Housing', description: 'Managing budget, timeline, and sustainable material procurement.', status: 'On Track', progress: 30 },
+                    { name: 'Urban Transit Upgrade', description: 'Coordinating with city officials for minimal disruption.', status: 'Planning', progress: 10 },
+                ],
+                training: [
+                    { name: 'Sustainable Project Management', completed: true },
+                    { name: 'Green Procurement Strategies', completed: false },
+                ],
+                recognition: [
+                    { name: 'On-Time & On-Budget Excellence', source: 'Company' },
+                ],
+                resources: [
+                    { name: 'Vendor Sustainability Checklist', url: '#' },
+                    { name: 'Project Impact Tracking Tool', url: '#' },
+                ]
+            },
+            'Employee': {
+                projects: [
+                    { name: 'Office Greening Initiative', description: 'Participating in waste reduction and energy saving efforts.', status: 'On Track', progress: 80 },
+                ],
+                training: [
+                    { name: 'Sustainability 101', completed: true },
+                    { name: 'Community Engagement Workshop', completed: false },
+                ],
+                recognition: [
+                    { name: 'Green Champion of the Month', source: 'Company' },
+                ],
+                resources: [
+                    { name: 'Company Sustainability Policy', url: '#' },
+                    { name: 'Eco-Idea Submission Portal', url: '#' },
+                ]
+            }
+        };
+
+        // --- DYNAMIC CONTENT RENDERING ---
+        const mainContentArea = document.getElementById('main-content-area');
+        let currentRole = 'Architect & Planner';
+
+        const renderDashboard = () => {
+            const roleData = appData[currentRole];
+            const projectsSummaryHTML = roleData.projects.slice(0, 2).map(p => {
+                 const statusColor = p.status === 'On Track' ? 'green' : (p.status === 'At Risk' ? 'yellow' : 'gray');
+                 return `<div class="flex items-center py-2 border-b"><div class="w-2 h-8 rounded-full bg-${statusColor}-500"></div><p class="ml-3 font-semibold">${p.name}</p><span class="ml-auto text-sm font-medium text-${statusColor}-600">${p.status}</span></div>`;
+            }).join('');
+
+            const completedTraining = roleData.training.filter(t => t.completed).length;
+            const totalTraining = roleData.training.length;
+            const trainingSummaryHTML = `<div class="text-center"><p class="text-3xl font-bold charvaka-text-accent">${completedTraining}/${totalTraining}</p><p class="text-sm text-gray-500">Modules Completed</p></div>`;
+
+            const latestRecognition = roleData.recognition[0];
+            const recognitionSummaryHTML = `<div class="text-center"><div class="p-3 bg-gray-100 rounded-lg"><p class="font-semibold">${latestRecognition.name}</p><p class="text-xs text-gray-500">Source: ${latestRecognition.source}</p></div></div>`;
+
+            const resourcesSummaryHTML = roleData.resources.slice(0, 2).map(r => `<a href="${r.url}" class="block p-2 bg-gray-50 hover:bg-gray-100 rounded-md text-sm font-semibold">${r.name}</a>`).join('<div class="mt-2"></div>');
+
+            mainContentArea.innerHTML = `
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h2 class="text-xl font-bold mb-4 charvaka-text">Projects at a Glance</h2>
+                        <div class="space-y-2">${projectsSummaryHTML}</div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <h2 class="text-xl font-bold mb-4 charvaka-text">Training Progress</h2>
+                            ${trainingSummaryHTML}
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                             <h2 class="text-xl font-bold mb-4 charvaka-text">Latest Recognition</h2>
+                            ${recognitionSummaryHTML}
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                             <h2 class="text-xl font-bold mb-4 charvaka-text">Quick Resources</h2>
+                            ${resourcesSummaryHTML}
+                        </div>
+                    </div>
+                </div>
+            `;
+        };
+
+        const renderProjects = () => {
+            const projects = appData[currentRole].projects;
+            const projectHTML = projects.map(p => {
+                const statusColor = p.status === 'On Track' ? 'green' : (p.status === 'At Risk' ? 'yellow' : 'gray');
+                return `
+                <div class="flex items-center p-3 rounded-lg hover:bg-gray-50 border-b">
+                    <div class="w-2 h-10 rounded-full bg-${statusColor}-500"></div>
+                    <div class="ml-4 flex-1">
+                        <p class="font-bold">${p.name}</p>
+                        <p class="text-sm text-gray-500">${p.description}</p>
+                    </div>
+                    <div class="text-sm text-center"><span class="font-semibold px-2 py-1 bg-${statusColor}-100 text-${statusColor}-700 rounded-full">${p.status}</span></div>
+                    <div class="w-40 ml-6"><div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-${statusColor}-500 h-2 rounded-full" style="width: ${p.progress}%"></div></div></div>
+                    <button class="ml-6 text-gray-500 hover:text-gray-800"><i data-feather="more-vertical"></i></button>
+                </div>`;
+            }).join('');
+
+            mainContentArea.innerHTML = `<div class="bg-white p-6 rounded-xl shadow-lg"><h2 class="text-xl font-bold mb-4 charvaka-text">Projects for ${currentRole}</h2><div class="space-y-4">${projectHTML}</div></div>`;
+        };
+
+        const renderTraining = () => {
+            const training = appData[currentRole].training;
+            const trainingHTML = training.map(t => `
+                <div class="border rounded-lg p-4 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg">${t.name}</h3>
+                        ${t.completed ? '<p class="text-sm text-green-600 font-semibold mt-2">Status: Completed</p>' : ''}
+                    </div>
+                    <button class="mt-4 w-full ${t.completed ? 'bg-gray-400 cursor-not-allowed' : 'charvaka-bg-accent hover:bg-green-700'} text-white py-2 rounded-md" ${t.completed ? 'disabled' : ''}>${t.completed ? 'Completed' : 'Enroll Now'}</button>
+                </div>
+            `).join('');
+            mainContentArea.innerHTML = `<div class="bg-white p-6 rounded-xl shadow-lg"><h2 class="text-xl font-bold mb-4 charvaka-text">Training for ${currentRole}</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-6">${trainingHTML}</div></div>`;
+        };
+        
+        const renderRecognition = () => {
+            const recognition = appData[currentRole].recognition;
+            const recognitionHTML = recognition.map(r => `
+                <div class="p-4 bg-gray-50 rounded-lg">
+                    <p class="font-semibold">${r.name}</p>
+                    <p class="text-sm text-gray-500">Source: ${r.source}</p>
+                </div>
+            `).join('');
+            mainContentArea.innerHTML = `<div class="bg-white p-6 rounded-xl shadow-lg"><h2 class="text-xl font-bold mb-4 charvaka-text">Recognition for ${currentRole}</h2><div class="space-y-3">${recognitionHTML}</div></div>`;
+        };
+
+        const renderResources = () => {
+            const resources = appData[currentRole].resources;
+            const resourcesHTML = resources.map(r => `<a href="${r.url}" class="block p-3 bg-gray-100 hover:bg-gray-200 rounded-md">${r.name}</a>`).join('');
+            mainContentArea.innerHTML = `<div class="bg-white p-6 rounded-xl shadow-lg"><h2 class="text-xl font-bold mb-4 charvaka-text">Resources for ${currentRole}</h2><div class="space-y-3">${resourcesHTML}</div></div>`;
+        };
+
+        // --- INITIAL LOAD & EVENT LISTENERS ---
         document.addEventListener('DOMContentLoaded', () => {
-            // Feather Icons
+            renderDashboard();
             feather.replace();
+
+            // Navigation Logic
+            const navLinks = document.querySelectorAll('.nav-link');
+            const headerTitle = document.getElementById('header-title');
+
+            const pageRenderers = {
+                'dashboard-content': renderDashboard,
+                'projects-content': renderProjects,
+                'training-content': renderTraining,
+                'recognition-content': renderRecognition,
+                'resources-content': renderResources,
+            };
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.dataset.target;
+                    
+                    pageRenderers[targetId]();
+                    feather.replace();
+
+                    navLinks.forEach(nav => nav.classList.remove('nav-active', 'text-white'));
+                    document.querySelectorAll(`.nav-link[data-target="${targetId}"]`).forEach(activeLink => {
+                        activeLink.classList.add('nav-active', 'text-white');
+                    });
+
+                    headerTitle.textContent = targetId === 'dashboard-content' ? 'SDG 11 Dashboard' : link.querySelector('span').textContent;
+                });
+            });
 
             // Role Switching Popup Logic
             const profileButton = document.getElementById('profile-button');
@@ -197,47 +325,27 @@
             const closePopupButton = document.getElementById('close-popup-btn');
             const roleOptions = document.querySelectorAll('.role-option');
             const userRoleDisplay = document.getElementById('user-role');
-            const sdgHubTitle = document.getElementById('sdg-hub-title');
-            const roleViews = document.querySelectorAll('#sdg-role-content > div');
 
-            function openPopup() {
-              rolePopup.style.display = 'block';
-            }
-
-            function closePopup() {
-              rolePopup.style.display = 'none';
-            }
+            const openPopup = () => rolePopup.style.display = 'block';
+            const closePopup = () => rolePopup.style.display = 'none';
 
             profileButton.addEventListener('click', openPopup);
             closePopupButton.addEventListener('click', closePopup);
-
-            // Close popup when clicking outside of the content
-            window.onclick = function(event) {
-              if (event.target == rolePopup) {
-                closePopup();
-              }
-            }
+            window.addEventListener('click', (event) => {
+              if (event.target == rolePopup) closePopup();
+            });
             
             roleOptions.forEach(option => {
                 option.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const selectedRole = option.dataset.role;
-                    const selectedView = option.dataset.view;
-
-                    // Update UI
-                    userRoleDisplay.textContent = selectedRole;
-                    sdgHubTitle.textContent = `SDG 11 Hub (${selectedRole} View)`;
-
-                    // Switch content
-                    roleViews.forEach(view => {
-                        if (view.id === selectedView) {
-                            view.classList.remove('hidden');
-                        } else {
-                            view.classList.add('hidden');
-                        }
-                    });
-
-                    // Re-render icons if they are in the new view
+                    currentRole = option.dataset.role;
+                    userRoleDisplay.textContent = currentRole;
+                    
+                    const activeNavLink = document.querySelector('.nav-link.nav-active');
+                    if (activeNavLink) {
+                        pageRenderers[activeNavLink.dataset.target]();
+                    }
+                    
                     feather.replace(); 
                     closePopup();
                 });
